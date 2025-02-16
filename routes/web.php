@@ -36,13 +36,6 @@ Route::post('/contacts/import-xml', [ContactsController::class, 'importXML'])->n
 Route::get('/download-sample-xml', function () {
     $filePath = public_path('contacts.xml');
     return response()->download($filePath);
-
-    if (file_exists($filePath)) {
-        return back()->with('error', 'You have already uploaded a contact XML file.');
-    }
-
-    $request->file('xmlFile')->move(public_path(), 'contacts.xml');
-
 })->name('download-sample-xml');
 
 require __DIR__.'/auth.php';
